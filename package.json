@@ -9,7 +9,8 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "prerender": "node scripts/prerender.mjs",
     "build": "node scripts/prepare-data.cjs && vite build && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs",
-    "preview": "vite preview"
+    "start": "node server.js",
+    "preview": "node server.js"
   },
   "dependencies": {
     "lucide-react": "^0.562.0",
