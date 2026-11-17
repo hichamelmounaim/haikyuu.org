@@ -1,5 +1,5 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
 import { MangaProvider } from './context/MangaContext';
@@ -43,6 +43,17 @@ import { useContentProtection } from './hooks/useContentProtection';
 
 const AppContent: React.FC = () => {
   useContentProtection();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'page_view', {
+        page_path: location.pathname + location.search,
+        page_location: window.location.href,
+        page_title: document.title,
+      });
+    }
+  }, [location]);
 
   return (
     <div className="font-sans antialiased text-gray-100 bg-[#121212] transition-colors duration-200 min-h-screen select-none">

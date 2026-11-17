@@ -23,10 +23,18 @@
        are inserted here by scripts/prerender.mjs (marked data-prerender). -->
   <!--SEO-HEAD-->
 
-  <!-- Analytics (Deferred to prevent render-blocking and optimize FCP/LCP) -->
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1QBKJCJFZV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1QBKJCJFZV');
+  </script>
+
+  <!-- Analytics (Deferred to prevent render-blocking and optimize FCP/LCP) -->
+  <script>
     function loadAnalytics() {
       if (window.__analyticsInit) return;
       window.__analyticsInit = true;
@@ -36,7 +44,6 @@
       gtm.async = true;
       gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KVCLMSPZ';
       document.head.appendChild(gtm);
-      gtag('js', new Date());
 
       // Yandex Metrika
       (function(m,e,t,r,i,k,a){
